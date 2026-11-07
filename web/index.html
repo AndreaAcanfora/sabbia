@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>sabbia · falling sand in Rust + WebAssembly</title>
+  <meta name="description" content="A falling-sand game: pour sand, water, fire, lava and acid and watch them interact. Physics in Rust, compiled to WebAssembly.">
+  <meta name="theme-color" content="#10121a">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <div id="stage">
+      <canvas id="world" aria-label="Sandbox: draw with the mouse or your finger"></canvas>
+      <div id="hint">Draw here · pick a material below</div>
+    </div>
+    <nav id="toolbar" aria-label="Materials and controls">
+      <div id="palette" role="radiogroup" aria-label="Material"></div>
+      <div id="controls">
+        <div class="group" role="radiogroup" aria-label="Brush size">
+          <button class="size" data-size="2" title="Small brush ( [ )">•</button>
+          <button class="size active" data-size="5" title="Medium brush">●</button>
+          <button class="size" data-size="10" title="Large brush ( ] )">⬤</button>
+        </div>
+        <div class="group">
+          <button id="pause" title="Pause (space)">❚❚</button>
+          <button id="clear" title="Clear (C)">🗑</button>
+          <button id="share" title="Copy a link to this scene">🔗 Share</button>
+        </div>
+        <div id="stats" aria-live="off"></div>
+      </div>
+    </nav>
+  </main>
+  <div id="toast" role="status"></div>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
