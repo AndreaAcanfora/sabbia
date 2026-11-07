@@ -1,0 +1,23 @@
+[package]
+name = "sabbia"
+version = "0.1.0"
+edition = "2024"
+description = "A falling-sand game: a cellular-automaton physics engine in Rust, compiled to WebAssembly"
+license = "MIT"
+repository = "https://github.com/AndreaAcanfora/sabbia"
+readme = "README.md"
+keywords = ["falling-sand", "cellular-automata", "webassembly", "game", "simulation"]
+categories = ["games", "simulation", "wasm"]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+# No dependencies: the engine is plain Rust, and the browser glue is ~20 lines of exported functions.
+[dependencies]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

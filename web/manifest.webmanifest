@@ -1,0 +1,11 @@
+{
+  "name": "sabbia",
+  "short_name": "sabbia",
+  "description": "Falling sand in Rust + WebAssembly",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#10121a",
+  "theme_color": "#10121a",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

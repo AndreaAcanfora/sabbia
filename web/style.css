@@ -1,0 +1,32 @@
+:root {
+  --bg: #10121a; --panel: #181b26; --line: #2a2f3d; --text: #e7e9ee; --muted: #8b91a1; --accent: #e2bf6e;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
+  font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; overscroll-behavior: none; }
+main { display: flex; flex-direction: column; height: 100dvh; }
+#stage { flex: 1; min-height: 0; display: grid; place-items: center; position: relative; padding: 8px; }
+canvas { image-rendering: pixelated; touch-action: none; cursor: crosshair; border-radius: 6px;
+  box-shadow: 0 0 0 1px var(--line); max-width: 100%; max-height: 100%; }
+#hint { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); color: var(--muted);
+  pointer-events: none; transition: opacity .6s; font-size: 13px; }
+#hint.gone { opacity: 0; }
+#toolbar { background: var(--panel); border-top: 1px solid var(--line); padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); }
+#palette { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
+.material { flex: 0 0 auto; display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px;
+  border: 1px solid var(--line); background: transparent; color: var(--text); font: inherit; cursor: pointer; }
+.material .swatch { width: 14px; height: 14px; border-radius: 50%; box-shadow: inset 0 0 0 1px #0004; }
+.material kbd { color: var(--muted); font: 11px ui-monospace, monospace; }
+.material.active { border-color: var(--accent); background: #e2bf6e1f; }
+#controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.group { display: flex; gap: 4px; }
+.group button { min-width: 38px; height: 34px; padding: 0 10px; border-radius: 8px; border: 1px solid var(--line);
+  background: transparent; color: var(--text); font: inherit; cursor: pointer; }
+.group button.active { border-color: var(--accent); }
+.size[data-size="2"] { font-size: 10px; } .size[data-size="10"] { font-size: 18px; }
+#stats { margin-left: auto; color: var(--muted); font: 12px ui-monospace, monospace; }
+#toast { position: fixed; left: 50%; bottom: 120px; transform: translateX(-50%) translateY(20px); opacity: 0;
+  background: #000c; padding: 10px 16px; border-radius: 8px; transition: all .25s; pointer-events: none; }
+#toast.show { opacity: 1; transform: translateX(-50%); }
+@media (max-width: 600px) { .material kbd { display: none; } #stats { width: 100%; text-align: right; } }
