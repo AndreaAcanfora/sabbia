@@ -4,6 +4,7 @@ on:
   push:
     branches: [master]
   pull_request:
+  workflow_dispatch: # run (and deploy) by hand from the Actions tab
 
 permissions:
   contents: read
@@ -40,7 +41,7 @@ jobs:
 
   deploy:
     # Publishes the game to GitHub Pages from the default branch.
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
     needs: test
     runs-on: ubuntu-latest
     permissions:
