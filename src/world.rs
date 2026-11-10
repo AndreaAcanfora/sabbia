@@ -115,6 +115,11 @@ impl World {
         self.cells[self.index(x, y)].element
     }
 
+    /// Steps left before a fire, smoke, steam or ember cell burns out (0 for every other element).
+    pub fn life(&self, x: usize, y: usize) -> u8 {
+        self.cells[self.index(x, y)].life
+    }
+
     /// Places an element, with a fresh colour variation and lifetime.
     pub fn set(&mut self, x: usize, y: usize, element: Element) {
         let life = match element {

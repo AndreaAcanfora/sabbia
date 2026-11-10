@@ -387,3 +387,22 @@ fn water_douses_embers() {
     world.step();
     assert_eq!(world.count(Element::Ember), 0);
 }
+
+#[test]
+fn burning_cells_count_down_their_life() {
+    let mut world = World::new(5, 5, 3);
+    world.set(2, 2, Element::Smoke);
+    world.set(0, 4, Element::Sand);
+    let life = world.life(2, 2);
+    assert!(
+        (40..=90).contains(&life),
+        "smoke starts with 40-90 steps, got {life}"
+    );
+    assert_eq!(world.life(0, 4), 0, "sand never burns out");
+    world.step();
+    let (x, y) = (0..25)
+        .map(|i| (i % 5, i / 5))
+        .find(|&(x, y)| world.get(x, y) == Element::Smoke)
+        .expect("the smoke is still there");
+    assert_eq!(world.life(x, y), life - 1);
+}
